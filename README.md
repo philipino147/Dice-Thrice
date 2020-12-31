@@ -1,4 +1,4 @@
-# Dice-Thrice-1
+# Dice-Thrice
 A fun text-based Dice Game
 
 To play, just follow these steps:
