@@ -9,10 +9,17 @@ def new_player():
       else:
         print("Length of string must be less than 8")
     print("Please enter characters A-Z only")
+  playertype = player_choice()
+  strategy = ""
+  if(playertype == "h"):
+    strategy = "human"
+  else:
+    strategy = strategy_choice(playername)
   player = {
     "playername": playername,
-    "playertype": player_choice(),
-    "score": 0
+    "playertype": playertype,
+    "score": 0,
+    "strategy": strategy
   }
   return player
 
@@ -26,7 +33,19 @@ def player_choice():
     except Exception as e:
       e = "The choice must be 'h' or 'b', you typed in %s" % choice
       print(e)
-  return choice    
+  return choice
+
+def strategy_choice(name):
+  while True:
+    try:
+      choice = str(input("%s's Strategy (aggressive,balanced,conservative,random): " % name))
+      if(choice == "aggressive" or choice == "balanced" or choice == "conservative" or choice =="random"):
+        break
+      print("Invalid choice entered, enter aggressive/balanced/conservative/random")
+    except Exception as e:
+      e = "The choice must be any of these: aggressive/balanced/conservative/random, you typed in %s" % choice
+      print(e)
+  return choice        
 
 #Create a custom number of players
 def playerboard():

@@ -58,7 +58,7 @@ def new_round(score,round):
 
 #Generates a new game 
 def new_game():
-  winning_score = 5500
+  winning_score = 3000
   round = 1
   max_round = 200
   print("""Dice Rules 
