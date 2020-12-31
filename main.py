@@ -15,6 +15,18 @@ playerlist = default
 #Initializes the scoreboard with each player's name and score
 scoreboard = {}
 
+#A function to clear the terminal depending on the operating system
+def clear_terminal():
+  os_type = os.name
+  print(os_type)
+  if(os_type == "posix"):
+    return os.system("clear")
+  elif(os_type == "nt"):
+    return os.system("cls")  
+  else:
+    print("Error: Unknown System Type")  
+  return
+
 #Updates the scoreboard with the current standings
 def update_scoreboard():
   for player in playerlist:
@@ -35,8 +47,8 @@ def new_round(score,round):
     new_score = new_Turn(playerlist[player],totalscore,playerlist[player]["strategy"])
     print("%s's Total Score is now %s" % (playerlist[player]["playername"],new_score))
     playerlist[player]["score"] = new_score
-    time.sleep(2)
-    os.system("clear")
+    time.sleep(4)
+    clear_terminal()
     if(playerlist[player]["score"] >= score):
       print("%s wins!!" % playerlist[player]["playername"])
       return
@@ -73,7 +85,7 @@ def new_game():
   while (not any(v["score"] >= winning_score for v in playerlist.values())):
     print("*** ROUND %s ***" % round)
     time.sleep(2)
-    os.system("clear")
+    clear_terminal()
     new_round(winning_score,round)
     round = round + 1
     if(round > max_round):
